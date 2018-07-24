@@ -22,11 +22,12 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.inMemoryAuthentication()
-                .withUser("james").password("password1").roles("USER")
-                .and()
-                .withUser("julian").password("password2").roles("USER", "ADMIN");
-    }
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth
+      .inMemoryAuthentication()
+      .withUser("rashid").password("password1").roles("USER")
+      .and()
+      .withUser("julian").password("password2").roles("USER", "ADMIN");
+  }
 }

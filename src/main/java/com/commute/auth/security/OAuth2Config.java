@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 
 /**
- * This class configures the authorized application (web, or mobile) which are used by used to authenticate themselves.
+ * This class configures the authorized application (web, or mobile) which are used by user to authenticate themselves.
  */
 @Configuration
 public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
@@ -21,21 +21,20 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+  @Override
+  public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+    clients.inMemory()
+      .withClient("client-id")
+      .secret("client-secret")
+      .authorizedGrantTypes("refresh_token", "password", "client_credentials")
+      .scopes("webclient", "mobileclient");
+  }
+
+
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints
-                .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService);
-    }
-
-
-    @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-
-        clients.inMemory()
-                .withClient("clientappname")
-                .secret("clientappsecret")
-                .authorizedGrantTypes("refresh_token", "password", "client_credentials")
-                .scopes("webclient", "mobileclient");
-    }
+      endpoints
+        .authenticationManager(authenticationManager)
+        .userDetailsService(userDetailsService);
+  }
 }
