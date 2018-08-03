@@ -9,6 +9,8 @@
 # Reference for command spring boot properties can be found at
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
+server:
+  port: 9010
 
 spring:
   application:
@@ -29,5 +31,5 @@ eureka:
         defaultZone: http://localhost:8761/eureka/
 
 
-server:
-  contextPath:   /auth
+#server:
+#  contextPath:   /auth
