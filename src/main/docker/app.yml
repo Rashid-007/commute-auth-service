@@ -1,0 +1,22 @@
+version: '2'
+services:
+  commute-identity-service:
+    image: dockerxya/commute-identity-service
+    external_links:
+      - commute-identity-service-postgres:postgres
+      - commute-service-discovery:discovery
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/commute-identity-service
+      - SPRING_APPLICATION_JSON={"spring":{"datasource":{"username":"commute","password":"Sekr8t"},"profiles":{"active":"prod"}},"vcap":{"services":{"commute-service-discovery":{"credentials":{"uri":"http://commute-dev:admin@discovery:8080"}}}}} #no white space
+    ports:
+      - 8081:8080
+      - 8001:8000 # Port for remote debugging such as on IDE
+  commute-identity-service-postgres:
+    extends:
+      file: postgres.yml
+      service: commute-identity-service-postgres
+  communite-service-discovery:
+    extends:
+      file: service-discovery.yml
+      service: communute-service-discovery
+

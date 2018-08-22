@@ -10,16 +10,30 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 server:
-  port: 9010
-
-spring:
-  application:
-    name: commute-auth-service
+  port: ${vcap.application.port:8080}
+  #contextPath: /auth
 
 management:
   context-path: /management
 
+spring:
+  application:
+    name: commute-identity-service
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    hibernate: # JPA runtime implementation
+      ddl-auto: none # Required to work with migration tool (flyway)
 
+logging.level.org.springframework.security: DEBUG
+
+security:
+  basic:
+    enabled: false
+  oauth2:
+    resource:
+      filter-order: 3
+
+logging.level.org.springframework.web: DEBUG
 
 eureka:
   instance:
@@ -30,6 +44,12 @@ eureka:
     serviceUrl:
         defaultZone: http://localhost:8761/eureka/
 
+commute:
+  security:
+   auth:
+    jwt:
+      tokenValidityInSeconds: 3600 # 1h
+      secret: nix
+    refreshToken:
+      tokenValidityInSeconds: 5184000 # 60d
 
-#server:
-#  contextPath:   /auth

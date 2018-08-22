@@ -1,0 +1,10 @@
+version: '2'
+services:
+  commute-identity-service-postgres:
+    image: postgres:9.5.5
+    environment:
+      - POSTGRES_USER=commute
+      - POSTGRES_PASSWORD=Sekr8t
+      - POSTGRES_DB=commute-identity-service
+    ports:
+      - 5401:5432

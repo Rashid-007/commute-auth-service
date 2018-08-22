@@ -16,4 +16,4 @@ echo "********************************************************"
 java -Djava.security.egd=file:/dev/./urandom -Dserver.port=$SERVER_PORT   \
      -Deureka.client.serviceUrl.defaultZone=$COMMUTESERVICEDISCOVERY_URI             \
      -Dspring.profiles.active=$PROFILE                                   \
-     -jar /usr/local/commute-auth-service/*.jar
+     -jar /usr/local/commute-identity-service/*.jar

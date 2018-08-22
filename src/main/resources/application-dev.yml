@@ -1,0 +1,38 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# This configuration overrides the test-application-default-profile.yml file.
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+server:
+  port: 8085
+
+spring:
+  jpa:
+    database: h2
+    show-sql: true
+    hibernate:
+      ddl-auto: create # Toggle for schema generation. Change to create.
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
+
+commute:
+  security:
+   auth:
+    jwt:
+      secret: |
+        Uhosp9k5nBhHnYM1HZS2/982vLQGwniP/bsG/biZGROQUk+yZNM4AErANMn7kx7591IVq9kfFvtjDbGzb2v8Fg==
+
+

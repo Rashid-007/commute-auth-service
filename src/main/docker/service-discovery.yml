@@ -1,0 +1,10 @@
+version: '2'
+services:
+  commute-service-discovery:
+    image: dockerxya/commute-service-discovery
+    container_name: commute-service-discovery
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+      - SECURITY_USER_PASSWORD=admin
+    ports:
+      - 9000:8080

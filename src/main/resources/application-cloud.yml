@@ -1,0 +1,17 @@
+# ===================================================================
+# Spring Boot configuration for the "cloud" profile.
+#
+# This configuration overrides the test-application-default-profile.yml file.
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+eureka:
+  instance:
+    hostname: ${vcap.application.uris[0]:services.commute-service-discovery}
+    non-secure-port: 80
+    prefer-ip-address: false # not applicable because direct access within ibm bluemix is disallowed
