@@ -1,6 +1,6 @@
-# Commute Service - Commute Authentication Service
+# Commute Service - Commute Identity Service
 
-This service offers OAuth2 authentication services (jwt based)
+This service offers jwt based authentication services (jwt based) with which the other resources can be accessed based on the account role
 
 ## Build
 `mvn package`
